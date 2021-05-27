@@ -985,7 +985,7 @@ local function CreateRow_Text(existingRow, text, container)
 	row.type = "text"
 
 	if not row.root then 
-		row.root = CreateFrame("FRAME", nil, container.scrollContent);		
+		row.root = CreateFrame("FRAME", nil, container.scrollContent,BackdropTemplateMixin and "BackdropTemplate");
 		-- row.root:SetWidth(container.scrollContent:GetWidth() - 20);
 		row.root:SetHeight(15);
 		row.root:SetBackdropColor(1, 0, 0, 1)

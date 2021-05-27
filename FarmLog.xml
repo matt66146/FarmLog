@@ -74,7 +74,7 @@
 
   <!-- Templates -->
 
-  <CheckButton name="FarmLogCheckButtonTemplate" virtual="true" inherits="InterfaceOptionsBaseCheckButtonTemplate">
+  <CheckButton name="FarmLogCheckButtonTemplate" virtual="true" inherits="InterfaceOptionsBaseCheckButtonTemplate,BackdropTemplate">
     <Layers>
       <Layer level="ARTWORK">
         <FontString name="$parentText" inherits="GameFontHighlightLeft" parentKey="Text">
@@ -103,7 +103,7 @@
   </CheckButton>
 
 
-  <Button name="FarmLogPanelButtonTemplate" virtual="true">
+  <Button name="FarmLogPanelButtonTemplate" virtual="true" inherits="BackdropTemplate">
     <Size>
       <AbsDimension x="40" y="22"/>
     </Size>
@@ -206,7 +206,12 @@
   </Button>
 
 
-  <Frame name="FarmLog_HonorFrenzyMeter" parent="UIParent" enableMouse="false" movable="true">
+  <Frame name="FarmLog_HonorFrenzyMeter" parent="UIParent" enableMouse="false" movable="true" inherits="BackdropTemplate">
+    <KeyValues>
+      <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+      <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+      <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+    </KeyValues>
     <Size>
       <AbsDimension x="140" y="40"/>
     </Size>
@@ -280,7 +285,7 @@
 
   <!-- Minimap Button -->
 
-  <Button name="FarmLog_MinimapButton" parent="Minimap" frameStrata="LOW" enableMouse="true" movable="true">
+  <Button name="FarmLog_MinimapButton" parent="Minimap" frameStrata="LOW" enableMouse="true" movable="true" inherits="BackdropTemplate">
     <Size>
       <AbsDimension x="31" y="31"/>
     </Size>
@@ -343,7 +348,12 @@
 
   <!-- Question Dialog -->
 
-  <Frame name="FarmLog_QuestionDialog" frameStrata="DIALOG" parent="UIParent" enableMouse="true" movable="true">
+  <Frame name="FarmLog_QuestionDialog" frameStrata="DIALOG" parent="UIParent" enableMouse="true" movable="true" inherits="BackdropTemplate">
+    <KeyValues>
+      <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+      <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+      <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+    </KeyValues>
     <Size>
       <AbsDimension x="250" y="100"/>
     </Size>
@@ -363,7 +373,7 @@
       </Anchor>
     </Anchors>
     <Scripts>
-      <OnLoad>
+      <OnLoad inherit="prepend">
    			self:SetBackdropColor (0, 0, 0, 0.9)
     		self:SetBackdropBorderColor(0, 0, 0, 1)
         self:RegisterForDrag("LeftButton")
@@ -379,7 +389,7 @@
     </Scripts>
     <Frames>
 
-      <Button name="$parent_CloseButton" inherits="UIPanelCloseButton">
+      <Button name="$parent_CloseButton" inherits="UIPanelCloseButton,BackdropTemplate">
         <Size>
           <AbsDimension x="26" y="26"/>
         </Size>
@@ -397,7 +407,12 @@
         </Scripts>
       </Button>      <!--$parent_CloseButton-->
 
-      <Frame name="$parent_Title">
+      <Frame name="$parent_Title" inherits="BackdropTemplate">
+        <KeyValues>
+          <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+          <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+          <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+        </KeyValues>
         <Size>
           <AbsDimension x="120" y="20"/>
         </Size>
@@ -422,7 +437,7 @@
           </TileSize>
         </Backdrop>
         <Scripts>
-          <OnLoad>
+          <OnLoad inherit="prepend">
        			self:SetBackdropColor(0.5, 0.5, 0.5, 0.2)
         		self:SetBackdropBorderColor(0, 0, 0, 1)
           </OnLoad>
@@ -438,7 +453,7 @@
           </Layer>
         </Layers>
       </Frame>      <!--$parent_Title-->
-      <Button name="$parent_No" inherits="UIPanelButtonTemplate" text="No">
+      <Button name="$parent_No" inherits="UIPanelButtonTemplate,BackdropTemplate" text="No">
         <Size>
           <AbsDimension x="70" y="20"/>
         </Size>
@@ -455,7 +470,7 @@
           </OnClick>
         </Scripts>
       </Button>      <!--$parent_No-->
-      <Button name="$parent_Yes" inherits="UIPanelButtonTemplate" text="Yes">
+      <Button name="$parent_Yes" inherits="UIPanelButtonTemplate,BackdropTemplate" text="Yes">
         <Size>
           <AbsDimension x="70" y="20"/>
         </Size>
@@ -488,7 +503,12 @@
 
   <!-- Heads-Up Display -->
 
-  <Frame name="FarmLog_HUD" frameStrata="MEDIUM" parent="UIParent" enableMouse="true" movable="true">
+  <Frame name="FarmLog_HUD" frameStrata="MEDIUM" parent="UIParent" enableMouse="true" movable="true" inherits="BackdropTemplate">
+    <KeyValues>
+      <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+      <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+      <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+    </KeyValues>
     <Backdrop bgFile="Interface/Buttons/WHITE8X8" edgeFile="Interface/Buttons/WHITE8X8" tile="true">
       <EdgeSize>
         <AbsValue val="1"></AbsValue>
@@ -499,7 +519,7 @@
     </Backdrop>
     <Anchor point="CENTER" />
     <Scripts>
-      <OnLoad>
+      <OnLoad inherit="prepend">
         self:SetUserPlaced(true)
       </OnLoad>
       <OnDragStart>
@@ -534,7 +554,12 @@
 
   <!-- Main Loot Window -->
 
-  <Frame name="FarmLog_MainWindow" parent="UIParent" frameStrata="MEDIUM" enableMouse="true" movable="true" resizable="true">
+  <Frame name="FarmLog_MainWindow" parent="UIParent" frameStrata="MEDIUM" enableMouse="true" movable="true" resizable="true" inherits="BackdropTemplate">
+    <KeyValues>
+      <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+      <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+      <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+    </KeyValues>
     <Size>
       <AbsDimension x="250" y="250"/>
     </Size>
@@ -550,7 +575,7 @@
       </TileSize>
     </Backdrop>
     <Scripts>
-      <OnLoad>
+      <OnLoad inherit="prepend">
         self:RegisterEvent("MODIFIER_STATE_CHANGED")
         self:SetMaxResize(600, GetScreenHeight() - 100);
    			self:SetBackdropColor (0, 0, 0, 0.8)
@@ -571,7 +596,7 @@
 
     <Frames>
 
-      <Button name="$parent_CloseButton" inherits="UIPanelCloseButton">
+      <Button name="$parent_CloseButton" inherits="UIPanelCloseButton,BackdropTemplate">
         <Size>
           <AbsDimension x="26" y="26"/>
         </Size>
@@ -589,7 +614,7 @@
         </Scripts>
       </Button>      <!--$parent_CloseButton-->
 
-      <Button name="$parent_ToggleHUDButton">
+      <Button name="$parent_ToggleHUDButton" inherits="BackdropTemplate">
         <Size>
           <AbsDimension x="28" y="14"/>
         </Size>
@@ -635,7 +660,7 @@
         </Scripts>
       </Button>      <!--$parent_ToggleHUDButton-->
 
-      <Button name="$parent_SessionsButton">
+      <Button name="$parent_SessionsButton" inherits="BackdropTemplate">
         <Size>
           <AbsDimension x="14" y="14"/>
         </Size>
@@ -684,7 +709,7 @@
         </Scripts>
       </Button>      <!--$parent_SessionsButton-->
 
-      <Button name="$parent_ClearButton">
+      <Button name="$parent_ClearButton" inherits="BackdropTemplate">
         <Size>
           <AbsDimension x="14" y="14"/>
         </Size>
@@ -734,7 +759,7 @@
       </Button>      <!--$parent_ClearButton-->
 
 
-      <Button name="$parent_NewSessionButton">
+      <Button name="$parent_NewSessionButton" inherits="BackdropTemplate">
         <Size>
           <AbsDimension x="14" y="14"/>
         </Size>
@@ -783,7 +808,12 @@
         </Scripts>
       </Button>      <!--$parent_NewSessionButton-->
 
-      <Frame name="$parent_Title" enableMouse="true" movable="true" resizable="true">
+      <Frame name="$parent_Title" enableMouse="true" movable="true" resizable="true" inherits="BackdropTemplate">
+        <KeyValues>
+          <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+          <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+          <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+        </KeyValues>
         <Size>
           <AbsDimension y="18"/>
         </Size>
@@ -808,7 +838,7 @@
           </TileSize>
         </Backdrop>
         <Scripts>
-          <OnLoad>
+          <OnLoad inherit="prepend">
        			self:SetBackdropColor(0.5, 0.5, 0.5, 0.3)
         		self:SetBackdropBorderColor(0, 0, 0, 0)
             self:RegisterForDrag("LeftButton")
@@ -833,7 +863,12 @@
         </Layers>
       </Frame>      <!--$parent_Title-->
 
-      <Frame name="$parent_Buttons" enableMouse="true" movable="true" resizable="true">
+      <Frame name="$parent_Buttons" enableMouse="true" movable="true" resizable="true" inherits="BackdropTemplate">
+        <KeyValues>
+          <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+          <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+          <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+        </KeyValues>
         <Size>
           <AbsDimension y="20"/>
         </Size>
@@ -858,13 +893,13 @@
           </TileSize>
         </Backdrop>
         <Scripts>
-          <OnLoad>
+          <OnLoad inherit="prepend">
        			self:SetBackdropColor(0.5, 0.5, 0.5, 0.1)
         		self:SetBackdropBorderColor(0, 0, 0, 0)
           </OnLoad>
         </Scripts>
         <Frames>
-          <Button name="$parent_SortGoldButton">
+          <Button name="$parent_SortGoldButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="28" y="14"/>
             </Size>
@@ -913,7 +948,7 @@
             </Scripts>
           </Button>          <!--$parent_SortGoldButton-->
 
-          <Button name="$parent_SortKillsButton">
+          <Button name="$parent_SortKillsButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="28" y="14"/>
             </Size>
@@ -962,7 +997,7 @@
             </Scripts>
           </Button>          <!--$parent_SortKillsButton-->
 
-          <Button name="$parent_SortAbcButton">
+          <Button name="$parent_SortAbcButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="28" y="14"/>
             </Size>
@@ -1011,7 +1046,7 @@
             </Scripts>
           </Button>          <!--$parent_SortAbcButton-->
 
-          <Button name="$parent_ToggleMobNameButton">
+          <Button name="$parent_ToggleMobNameButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="32" y="14"/>
             </Size>
@@ -1056,7 +1091,7 @@
             </Scripts>
           </Button>          <!--$parent_ToggleMobNameButton-->
 
-          <Button name="$parent_ToggleCurrentButton">
+          <Button name="$parent_ToggleCurrentButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="42" y="14"/>
             </Size>
@@ -1103,7 +1138,7 @@
             </Scripts>
           </Button>          <!--$parent_ToggleCurrentButton-->
 
-          <Button name="$parent_TogglePvPButton">
+          <Button name="$parent_TogglePvPButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="28" y="14"/>
             </Size>
@@ -1150,7 +1185,12 @@
             </Scripts>
           </Button>          <!--$parent_TogglePvPButton-->
 
-          <Frame name="$parent_Instances">
+          <Frame name="$parent_Instances" inherits="BackdropTemplate">
+              <KeyValues>
+                <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+                <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+                <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+              </KeyValues>
             <Size>
               <AbsDimension x="20" y="14"/>
             </Size>
@@ -1180,7 +1220,7 @@
               </Layer>
             </Layers>
             <Scripts>
-              <OnLoad>
+              <OnLoad inherit="prepend">
                 self:SetBackdropColor(0, 0, 0, 0.4)
           			self:SetBackdropBorderColor(1, 1, 1, 0.1)
 			          FarmLog_MainWindow_Buttons_Instances_Text:SetTextColor(0.8, 0.8, 0.8, 1)
@@ -1197,7 +1237,7 @@
         </Frames>
       </Frame>      <!--$parent_Buttons-->
 
-      <Button name="$parent_Resize">
+      <Button name="$parent_Resize" inherits="BackdropTemplate">
         <Size>
           <AbsDimension x="16" y="16"/>
         </Size>
@@ -1262,7 +1302,12 @@
     </Frames>
   </Frame>  <!--FarmLog_MainWindow-->
 
-  <Frame name="FarmLog_SessionsWindow" parent="UIParent" frameStrata="HIGH" enableMouse="true" movable="true" resizable="true">
+  <Frame name="FarmLog_SessionsWindow" parent="UIParent" frameStrata="HIGH" enableMouse="true" movable="true" resizable="true" inherits="BackdropTemplate">
+    <KeyValues>
+      <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+      <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+      <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+    </KeyValues>
     <Size>
       <AbsDimension x="200" y="200"/>
     </Size>
@@ -1282,7 +1327,7 @@
       </TileSize>
     </Backdrop>
     <Scripts>
-      <OnLoad>
+      <OnLoad inherit="prepend">
    			self:SetBackdropColor (0, 0, 0, 0.8)
     		self:SetBackdropBorderColor(0, 0, 0, 1)
         self.rows = {}
@@ -1292,7 +1337,7 @@
 
     <Frames>
 
-      <Button name="$parent_CloseButton" inherits="UIPanelCloseButton">
+      <Button name="$parent_CloseButton" inherits="UIPanelCloseButton,BackdropTemplate">
         <Size>
           <AbsDimension x="26" y="26"/>
         </Size>
@@ -1310,7 +1355,12 @@
         </Scripts>
       </Button>      <!--$parent_CloseButton-->
 
-      <Frame name="$parent_Title" enableMouse="true" movable="true" resizable="true">
+      <Frame name="$parent_Title" enableMouse="true" movable="true" resizable="true" inherits="BackdropTemplate">
+        <KeyValues>
+          <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+          <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+          <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+        </KeyValues>
         <Size>
           <AbsDimension x="120" y="20"/>
         </Size>
@@ -1335,7 +1385,7 @@
           </TileSize>
         </Backdrop>
         <Scripts>
-          <OnLoad>
+          <OnLoad inherit="prepend">
        			self:SetBackdropColor(0.5, 0.5, 0.5, 0.3)
         		self:SetBackdropBorderColor(0, 0, 0, 0)
             self:RegisterForDrag("LeftButton")
@@ -1359,7 +1409,12 @@
         </Layers>
       </Frame>      <!--$parent_Title-->
 
-      <Frame name="$parent_Buttons" enableMouse="true" movable="true" resizable="true">
+      <Frame name="$parent_Buttons" enableMouse="true" movable="true" resizable="true" inherits="BackdropTemplate">
+        <KeyValues>
+          <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+          <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+          <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+        </KeyValues>
         <Size>
           <AbsDimension y="20"/>
         </Size>
@@ -1384,13 +1439,13 @@
           </TileSize>
         </Backdrop>
         <Scripts>
-          <OnLoad>
+          <OnLoad inherit="prepend">
        			self:SetBackdropColor(0.5, 0.5, 0.5, 0.1)
         		self:SetBackdropBorderColor(0, 0, 0, 0)
           </OnLoad>
         </Scripts>
         <Frames>
-          <Button name="$parent_SortGoldButton">
+          <Button name="$parent_SortGoldButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="28" y="14"/>
             </Size>
@@ -1435,7 +1490,7 @@
             </Scripts>
           </Button>          <!--$parent_SortGoldButton-->
 
-          <Button name="$parent_SortUseButton">
+          <Button name="$parent_SortUseButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="28" y="14"/>
             </Size>
@@ -1480,7 +1535,7 @@
             </Scripts>
           </Button>          <!--$parent_SortUseButton-->
 
-          <Button name="$parent_SortAbcButton">
+          <Button name="$parent_SortAbcButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="28" y="14"/>
             </Size>
@@ -1525,7 +1580,7 @@
             </Scripts>
           </Button>          <!--$parent_SortAbcButton-->
 
-          <Button name="$parent_NewFarmButton">
+          <Button name="$parent_NewFarmButton" inherits="BackdropTemplate">
             <Size>
               <AbsDimension x="14" y="14"/>
             </Size>
@@ -1570,7 +1625,7 @@
             </Scripts>
           </Button>          <!--$parent_NewFarmButton-->
 
-          <EditBox name="$parent_SearchBox" letters="80" autoFocus="false">
+          <EditBox name="$parent_SearchBox" letters="80" autoFocus="false" inherits="BackdropTemplate">
             <Size x="10" y="16" />
             <Anchors>
               <Anchor point="LEFT" x="2" y="0" />
@@ -1585,7 +1640,7 @@
               </TileSize>
             </Backdrop>
             <Scripts>
-              <OnLoad>
+              <OnLoad inherit="prepend">
                 self:SetBackdropColor(0, 0, 0, 0.8)
             		self:SetBackdropBorderColor(0.5, 0.5, 0.5, 0)
               </OnLoad>
@@ -1609,7 +1664,7 @@
         </Frames>
       </Frame>      <!--$parent_Buttons-->
 
-      <Button name="$parent_Resize">
+      <Button name="$parent_Resize" inherits="BackdropTemplate">
         <Size>
           <AbsDimension x="16" y="16"/>
         </Size>
@@ -1674,7 +1729,12 @@
   </Frame>  <!--FarmLog_SessionsWindow-->
 
 
-  <Frame name="FarmLog_LogWindow" parent="UIParent" frameStrata="HIGH" enableMouse="true" movable="true" resizable="true">
+  <Frame name="FarmLog_LogWindow" parent="UIParent" frameStrata="HIGH" enableMouse="true" movable="true" resizable="true" inherits="BackdropTemplate">
+    <KeyValues>
+      <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+      <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+      <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+    </KeyValues>
     <Size>
       <AbsDimension x="200" y="200"/>
     </Size>
@@ -1694,7 +1754,7 @@
       </TileSize>
     </Backdrop>
     <Scripts>
-      <OnLoad>
+      <OnLoad inherit="prepend">
    			self:SetBackdropColor (0, 0, 0, 0.8)
     		self:SetBackdropBorderColor(0, 0, 0, 1)
         self.rows = {}
@@ -1704,7 +1764,7 @@
 
     <Frames>
 
-      <Button name="$parent_CloseButton" inherits="UIPanelCloseButton">
+      <Button name="$parent_CloseButton" inherits="UIPanelCloseButton,BackdropTemplate">
         <Size>
           <AbsDimension x="26" y="26"/>
         </Size>
@@ -1722,7 +1782,12 @@
         </Scripts>
       </Button>      <!--$parent_CloseButton-->
 
-      <Frame name="$parent_Title" enableMouse="true" movable="true" resizable="true">
+      <Frame name="$parent_Title" enableMouse="true" movable="true" resizable="true" inherits="BackdropTemplate">
+        <KeyValues>
+          <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+          <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+          <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+        </KeyValues>
         <Size>
           <AbsDimension x="120" y="20"/>
         </Size>
@@ -1747,7 +1812,7 @@
           </TileSize>
         </Backdrop>
         <Scripts>
-          <OnLoad>
+          <OnLoad inherit="prepend">
        			self:SetBackdropColor(0.5, 0.5, 0.5, 0.3)
         		self:SetBackdropBorderColor(0, 0, 0, 0)
             self:RegisterForDrag("LeftButton")
@@ -1771,7 +1836,7 @@
         </Layers>
       </Frame>      <!--$parent_Title-->
 
-      <Button name="$parent_Resize">
+      <Button name="$parent_Resize" inherits="BackdropTemplate">
         <Size>
           <AbsDimension x="16" y="16"/>
         </Size>

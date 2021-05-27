@@ -1,7 +1,7 @@
 -- Some pieces of the code here were taken from NeatPlates https://www.curseforge.com/wow/addons/neatplates
 
 local function CreatePanelFrame(reference, title)
-	local panelframe = CreateFrame( "Frame", reference, UIParent);
+	local panelframe = CreateFrame( "Frame", reference, UIParent, BackdropTemplateMixin and "BackdropTemplate");
 	panelframe.name = title
 	panelframe.Label = panelframe:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
 	panelframe.Label:SetPoint("TOPLEFT", panelframe, "TOPLEFT", 16, -16)
@@ -14,7 +14,7 @@ local function CreatePanelFrame(reference, title)
 end
 
 local function CreateHelpFrame(reference, text)
-	local helpframe = CreateFrame( "Frame", reference, UIParent);
+	local helpframe = CreateFrame( "Frame", reference, UIParent, BackdropTemplateMixin and "BackdropTemplate");
 	helpframe.name = reference
 	helpframe.Label = helpframe:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
 	helpframe.Label:SetPoint("TOPLEFT", helpframe, "TOPLEFT", 16, -16)
@@ -26,7 +26,7 @@ local function CreateHelpFrame(reference, text)
 end
 
 local function CreateCheckButton(reference, parent, label)
-	local checkbutton = CreateFrame("CheckButton", reference, parent, "FarmLogCheckButtonTemplate")
+	local checkbutton = CreateFrame("CheckButton", reference, parent, BackdropTemplateMixin and "FarmLogCheckButtonTemplate,BackdropTemplate")
 	checkbutton.Label = _G[reference.."Text"]
 	checkbutton.Label:SetText(label)
 	return checkbutton
@@ -76,13 +76,13 @@ panel.DividerLine:SetPoint("TOPLEFT", panel.Label, "BOTTOMLEFT", -6, -8)
 
 -- Main Scrolled Frame
 ------------------------------
-panel.MainFrame = CreateFrame("Frame")
+panel.MainFrame = CreateFrame("Frame",nil, UIParent, BackdropTemplateMixin and "BackdropTemplate")
 panel.MainFrame:SetWidth(500)
 panel.MainFrame:SetHeight(100) 		-- If the items inside the frame overflow, it automatically adjusts the height.
 
 -- Scrollable Panel Window
 ------------------------------
-panel.ScrollFrame = CreateFrame("ScrollFrame","FarmLog_Scrollframe", panel, "UIPanelScrollFrameTemplate")
+panel.ScrollFrame = CreateFrame("ScrollFrame","FarmLog_Scrollframe", panel, BackdropTemplateMixin and "UIPanelScrollFrameTemplate,BackdropTemplate")
 panel.ScrollFrame:EnableMouse(true)
 panel.ScrollFrame:EnableMouseWheel(true)
 panel.ScrollFrame:SetPoint("LEFT", 8)
@@ -93,7 +93,7 @@ panel.ScrollFrame:SetScrollChild(panel.MainFrame)
 
 -- Scroll Frame Border
 ------------------------------
-panel.ScrollFrameBorder = CreateFrame("Frame", "FarmLogScrollFrameBorder", panel.ScrollFrame)
+panel.ScrollFrameBorder = CreateFrame("Frame", "FarmLogScrollFrameBorder", panel.ScrollFrame, BackdropTemplateMixin and "BackdropTemplate")
 panel.ScrollFrameBorder:SetPoint("TOPLEFT", -4, 5)
 panel.ScrollFrameBorder:SetPoint("BOTTOMRIGHT", 3, -5)
 panel.ScrollFrameBorder:SetBackdrop({bgFile = "Interface/Tooltips/UI-Tooltip-Background",
@@ -174,7 +174,7 @@ local function AHMinQualityDropdown_OnClick(self)
 		end 
 	end 
 end
-mfpanel.AHMinQualityDropdown = CreateFrame("Frame", "FarmLogAHMinQualityDropdown", mfpanel, "UIDropDownMenuTemplate")
+mfpanel.AHMinQualityDropdown = CreateFrame("Frame", "FarmLogAHMinQualityDropdown", mfpanel, BackdropTemplateMixin and "UIDropDownMenuTemplate,BackdropTemplate")
 mfpanel.AHMinQualityDropdown:SetPoint("TOPLEFT", mfpanel.AHMinQuality, "BOTTOMLEFT", -20, -2)
 UIDropDownMenu_SetWidth(mfpanel.AHMinQualityDropdown, 200) 
 UIDropDownMenu_Initialize(mfpanel.AHMinQualityDropdown, function (frame, level, menuList)
@@ -279,7 +279,7 @@ mfpanel.AutoResumeBGs = CreateCheckButton("FarmLogOptions_AutoResumeBGs", mfpane
 mfpanel.AutoResumeBGs:SetPoint("TOPLEFT", mfpanel.HonorDRinBGs, "TOPLEFT", 0, -25)
 mfpanel.AutoResumeBGs:SetScript("OnClick", function(self) FLogGlobalVars.autoResumeBGs = self:GetChecked() end)
 
-mfpanel.MoveHonorFrenzyButton = CreateFrame("Button", "FarmLogOptions_MoveHonorFrenzyButton", mfpanel, "FarmLogPanelButtonTemplate")
+mfpanel.MoveHonorFrenzyButton = CreateFrame("Button", "FarmLogOptions_MoveHonorFrenzyButton", mfpanel, BackdropTemplateMixin and "FarmLogPanelButtonTemplate,BackdropTemplate")
 mfpanel.MoveHonorFrenzyButton:SetPoint("TOPLEFT", mfpanel.AutoResumeBGs, "BOTTOMLEFT", -0, -5)
 mfpanel.MoveHonorFrenzyButton:SetWidth(200)
 mfpanel.MoveHonorFrenzyButton:SetText(L["Move Honor Frenzy Frame"])
@@ -294,19 +294,19 @@ mfpanel.AppearanceCategoryTitle:SetFont(font, 16)
 mfpanel.AppearanceCategoryTitle:SetText(L["Appearance"])
 mfpanel.AppearanceCategoryTitle:SetPoint("TOPLEFT", mfpanel.MoveHonorFrenzyButton, "BOTTOMLEFT", 0, -20)
 
-mfpanel.ResetMinimapPositionButton = CreateFrame("Button", "FarmLogOptions_ResetMinimapPositionButton", mfpanel, "FarmLogPanelButtonTemplate")
+mfpanel.ResetMinimapPositionButton = CreateFrame("Button", "FarmLogOptions_ResetMinimapPositionButton", mfpanel, BackdropTemplateMixin and "FarmLogPanelButtonTemplate,BackdropTemplate")
 mfpanel.ResetMinimapPositionButton:SetPoint("TOPLEFT", mfpanel.AppearanceCategoryTitle, "BOTTOMLEFT", -0, -10)
 mfpanel.ResetMinimapPositionButton:SetWidth(200)
 mfpanel.ResetMinimapPositionButton:SetText(L["Reset Minimap Icon Position"])
 mfpanel.ResetMinimapPositionButton:SetScript("OnClick", function(self) FarmLog_MinimapButton:ResetPosition() end)
 
-mfpanel.ResetLootWindowPositionButton = CreateFrame("Button", "FarmLogOptions_ResetLootWindowPositionButton", mfpanel, "FarmLogPanelButtonTemplate")
+mfpanel.ResetLootWindowPositionButton = CreateFrame("Button", "FarmLogOptions_ResetLootWindowPositionButton", mfpanel, BackdropTemplateMixin and "FarmLogPanelButtonTemplate,BackdropTemplate")
 mfpanel.ResetLootWindowPositionButton:SetPoint("TOPLEFT", mfpanel.ResetMinimapPositionButton, "TOPRIGHT", 10, 0)
 mfpanel.ResetLootWindowPositionButton:SetWidth(200)
 mfpanel.ResetLootWindowPositionButton:SetText(L["Reset Loot Window Position"])
 mfpanel.ResetLootWindowPositionButton:SetScript("OnClick", function(self) FarmLog_MainWindow:ResetPosition() end)
 
-mfpanel.ResetHUDPositionButton = CreateFrame("Button", "FarmLogOptions_ResetHUDPositionButton", mfpanel, "FarmLogPanelButtonTemplate")
+mfpanel.ResetHUDPositionButton = CreateFrame("Button", "FarmLogOptions_ResetHUDPositionButton", mfpanel, BackdropTemplateMixin and "FarmLogPanelButtonTemplate,BackdropTemplate")
 mfpanel.ResetHUDPositionButton:SetPoint("TOPLEFT", mfpanel.ResetMinimapPositionButton, "BOTTOMLEFT", 0, -5)
 mfpanel.ResetHUDPositionButton:SetWidth(200)
 mfpanel.ResetHUDPositionButton:SetText(L["Reset HUD Position"])
