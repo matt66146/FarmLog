@@ -1,8 +1,8 @@
-﻿## Interface: 11303
+﻿## Interface: 20501
 ## Title: FarmLog
 ## Notes: Logs loot, monster kills, honor and instances. Know exactly what your farm session has yielded.
-## Author: Kof @Shazzrah
-## Version: v1.19
+## Author: Matt
+## Version: v0.1-beta
 ## SavedVariables: FLogGlobalVars
 ## SavedVariablesPerCharacter: FLogVars
 FarmLog.xml
