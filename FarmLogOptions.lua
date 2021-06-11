@@ -255,6 +255,7 @@ mfpanel.TrackMoney:SetPoint("TOPLEFT", mfpanel.TrackConsumes, "TOPLEFT", 0, -25)
 mfpanel.TrackMoney:SetScript("OnClick", function(self) SetTrackFlag("money", self:GetChecked()) end)
 
 
+
 ----------------------------------------------
 -- PvP
 ----------------------------------------------

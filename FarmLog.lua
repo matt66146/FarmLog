@@ -2150,6 +2150,11 @@ local SelfLootStrings = {
 }
 
 local function ParseSelfLootEvent(chatmsg)
+	words = {}
+	local next = false
+	local link1 = ""
+	local quantity1 = 0
+
 	for _, st in ipairs(SelfLootStrings) do
 		local link, quantity = FLogDeformat(chatmsg, st)
 		if quantity then 
@@ -2159,13 +2164,42 @@ local function ParseSelfLootEvent(chatmsg)
 			return link, 1
 		end 
 	end
+	--print("This is being added to FL because of my changes!")
+	for word in chatmsg:gmatch("%w+") do
+		if next == true then
+			--print(word)
+			link1 = word
+			next = false
+		end
+		if string.find(word,"Hitem") then
+			--print("link is next")
+			next = true
+		end
+
+		if string.find(word, "rx") then
+			local test = word:gsub("rx","")
+			quantity1 = tonumber(test)
+			--print(test)
+		end
+
+		if word == "r" then
+			quantity = 1
+			--print(1)
+		end
+	end
+	return link1, quantity1
 end
+
 
 function FarmLog:OnLootEvent(text)
 	local now = time()
 	local itemLink, quantity = ParseSelfLootEvent(text)
-	if not itemLink then return end 
+	if not itemLink then return end
 
+	if not string.find(itemLink,":") then
+		local sName, sLink, iRarity, iLevel, iMinLevel, sType, sSubType, iStackCount = GetItemInfo(tonumber(itemLink))
+		itemLink = sLink
+	end
 	local itemId = extractItemID(itemLink)
 	debug("|cff999999OnLootEvent|r itemId |cffff9900"..tostring(itemId))
 	if itemId == tostring(BL_ITEMID) then 
