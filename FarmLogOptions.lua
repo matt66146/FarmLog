@@ -254,6 +254,9 @@ mfpanel.TrackMoney = CreateCheckButton("FarmLogOptions_TrackMoney", mfpanel, L["
 mfpanel.TrackMoney:SetPoint("TOPLEFT", mfpanel.TrackConsumes, "TOPLEFT", 0, -25)
 mfpanel.TrackMoney:SetScript("OnClick", function(self) SetTrackFlag("money", self:GetChecked()) end)
 
+mfpanel.TrackMisc = CreateCheckButton("FarmLogOptions_TrackMisc", mfpanel, L["Miscellaneous"])
+mfpanel.TrackMisc:SetPoint("TOPLEFT", mfpanel.TrackMoney, "TOPLEFT", 0, -25)
+mfpanel.TrackMisc:SetScript("OnClick", function(self) SetTrackFlag("misc", self:GetChecked()) end)
 
 
 ----------------------------------------------
@@ -262,7 +265,7 @@ mfpanel.TrackMoney:SetScript("OnClick", function(self) SetTrackFlag("money", sel
 mfpanel.AppearanceCategoryTitle = mfpanel:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
 mfpanel.AppearanceCategoryTitle:SetFont(font, 16)
 mfpanel.AppearanceCategoryTitle:SetText(L["PvP"])
-mfpanel.AppearanceCategoryTitle:SetPoint("TOPLEFT", mfpanel.TrackMoney, "BOTTOMLEFT", 0, -20)
+mfpanel.AppearanceCategoryTitle:SetPoint("TOPLEFT", mfpanel.TrackMisc, "BOTTOMLEFT", 0, -20)
 
 mfpanel.ShowHonorPercentOnTooltip = CreateCheckButton("FarmLogOptions_ShowHonorPercentOnTooltip", mfpanel, L["showHonorPercentOnTooltip"])
 mfpanel.ShowHonorPercentOnTooltip:SetPoint("TOPLEFT", mfpanel.AppearanceCategoryTitle, "TOPLEFT", 0, -25)
@@ -337,6 +340,7 @@ function InterfacePanel:AddonLoaded()
 	InterfacePanel.MainFrame.TrackRanks:SetChecked(FLogGlobalVars.track.ranks)
 	InterfacePanel.MainFrame.TrackConsumes:SetChecked(FLogGlobalVars.track.consumes)
 	InterfacePanel.MainFrame.TrackMoney:SetChecked(FLogGlobalVars.track.money)
+	InterfacePanel.MainFrame.TrackResets:SetChecked(FLogGlobalVars.track.misc)
 	InterfacePanel.MainFrame.TrackXP:SetChecked(FLogGlobalVars.track.xp)
 	InterfacePanel.MainFrame.TrackSkill:SetChecked(FLogGlobalVars.track.skill)
 	InterfacePanel.MainFrame.TrackRep:SetChecked(FLogGlobalVars.track.rep)

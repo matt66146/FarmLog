@@ -113,6 +113,7 @@ function FarmLog_BuildLocalization(context)
     L["Skill Level Increments"] = "Skill level increments"
     L["Reputation Gained"] = "Reputation gained"
     L["Money Gained"] = "Money gained"
+    L["Miscellaneous"] = "Miscellaneous"
     L["Consumes Used"] = "Consumes used"
     L["Instance Resets"] = "Instance resets"
     L["Mobs Kill Count"] = "Mobs kill count"

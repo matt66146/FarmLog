@@ -2148,30 +2148,36 @@ local function ParseSelfLootEvent(chatmsg)
 			return link, 1
 		end 
 	end
-	--print("This is being added to FL because of my changes!")
-	for word in chatmsg:gmatch("%w+") do
-		if next == true then
-			--print(word)
-			link1 = word
-			next = false
-		end
-		if string.find(word,"Hitem") then
-			--print("link is next")
-			next = true
-		end
+	
 
-		if string.find(word, "rx") then
-			local test = word:gsub("rx","")
-			quantity1 = tonumber(test)
-			--print(test)
-		end
+	--Optional For Gas Clouds Mailbox and more.
+	if FLogGlobalVars.track.misc then
+		for word in chatmsg:gmatch("%w+") do
+			if next == true then
+				--print(word)
+				link1 = word
+				next = false
+			end
+			if string.find(word,"Hitem") then
+				--print("link is next")
+				next = true
+			end
 
-		if word == "r" then
-			quantity = 1
-			--print(1)
+			if string.find(word, "rx") then
+				local test = word:gsub("rx","")
+				quantity1 = tonumber(test)
+				--print(test)
+			end
+
+			if word == "r" then
+				quantity = 1
+				--print(1)
+			end
 		end
+		return link1, quantity1
 	end
-	return link1, quantity1
+
+
 end
 
 
