@@ -260,7 +260,6 @@ local sessionSearchResult = nil
 local addonLoadedTime = nil
 local blSeen = nil
 local lastHudDressUp = 0
-local hasBigwigs = false
 local honorFrenzySetTime = nil 
 local honorFrenzyTotal = 0
 local honorFrenzyKills = 0
@@ -2044,25 +2043,8 @@ function FarmLog:SaveBLSeenTime()
 	debug("|cff999999SaveBLSeenTime|r blSeenTime |cffff9900"..blSeen.ts.."|r blSeenZone |cffff9900"..blSeen.zone)
 end 
 
-function FarmLog:CheckTimerAddons()
-	if FLogGlobalVars.showBlackLotusTimer then 
-		local bigwigsAddons = {'BigWigs_Core', 'BigWigs_Options', 'BigWigs_Plugins',}
-		hasBigwigs = true
-		for i=1, #bigwigsAddons do
-			if IsAddOnLoadOnDemand(bigwigsAddons[i]) then 
-				LoadAddOn(bigwigsAddons[i])
-			else 
-				if not IsAddOnLoaded(bigwigsAddons[i]) then
-					hasBigwigs = false
-					break
-				end
-			end 
-		end
-	end 
-end 
-
 function FarmLog:ShowBlackLotusTimers()
-	if FLogGlobalVars.showBlackLotusTimer and (DBM or hasBigwigs) then 
+	if FLogGlobalVars.showBlackLotusTimer then 
 		local now = time()
 		for realmName, timers in pairs(FLogGlobalVars.blt) do 
 			if realmName == REALM then 
@@ -2073,8 +2055,10 @@ function FarmLog:ShowBlackLotusTimers()
 						local text = L["blacklotus-short"]..": "..zoneName
 						if DBM then 
 							DBM:CreatePizzaTimer(seconds, text)
-						elseif SlashCmdList.BIGWIGSLOCALBAR then 
+						elseif SlashCmdList.BIGWIGSLOCALBAR then -- BigWigs exists and is fully loaded
 							SlashCmdList.BIGWIGSLOCALBAR(seconds.." "..text)
+						elseif SlashCmdList["/LOCALBAR"] then -- BigWigs exists but is not yet fully loaded
+							SlashCmdList["/LOCALBAR"](seconds.." "..text)
 						end 
 					end 
 				end 
@@ -2673,7 +2657,6 @@ function FarmLog:OnUpdate()
 	end 
 	if addonLoadedTime and time() - addonLoadedTime > BL_TIMERS_DELAY then 
 		addonLoadedTime = nil 
-		self:CheckTimerAddons()
 		self:ShowBlackLotusTimers()
 		self:CheckPvPDayReset() -- this may return 0 if called too soon
 	end 
