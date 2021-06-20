@@ -28,6 +28,12 @@ local BG_INSTANCE_NAMES = {
 	["Warsong Gulch"] = true,
 	["Alterac Valley"] = true,
 	["Arathi Basin"] = true,
+	["Eye of the Storm"] = true,
+}
+local ARENA_INSTANCE_NAMES = {
+	["Nagrand Arena"] = true,
+	["Blade's Edge Arena"] = true,
+	["Ruins of Lordaeron"] = true,
 }
 
 local VALUE_TYPE_MANUAL = 'M'
@@ -2400,8 +2406,8 @@ function FarmLog:OnEnteringWorld(isInitialLogin, isReload)
 			end
 		end 
 		-- ignore BGs
-		if BG_INSTANCE_NAMES[instanceName] then 
-			if FLogGlobalVars.track.bgs and not FLogVars.inInstance then 
+		if BG_INSTANCE_NAMES[instanceName] or ARENA_INSTANCE_NAMES[instanceName] then 
+			if FLogGlobalVars.track.bgs and not FLogVars.inInstance and BG_INSTANCE_NAMES[instanceName] then 
 				bgResultRecorded = false 
 				IncreaseSessionDictVar("bgs", instanceName, 1)
 			end 
