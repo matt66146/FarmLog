@@ -1645,6 +1645,8 @@ function FarmLog:OnSpellCastSuccessEvent(unit, target, spellId)
 	debug("|cff999999OnSpellCastSuccessEvent|r spellId |cffff9900"..tostring(spellId).."|r unit |cffff9900"..tostring(unit))
 	if not FLogGlobalVars.track.consumes or unit ~= "player" then return end 
 	local buffmeta = FarmLog.Consumes[tostring(spellId)]
+	-- stuck here
+	--print(spellId)
 	if buffmeta and buffmeta.item then 
 		-- item has/had to be in bags for get by name to work
 		local _, itemLink, _, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(buffmeta.item)
