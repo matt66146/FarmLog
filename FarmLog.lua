@@ -155,6 +155,7 @@ FLogGlobalVars = {
 		levelup = true,
 		resets = true,
 		bgs = true,
+		misc = false,
 	},
 	hud = {
 		paddingX = 8,
@@ -651,6 +652,7 @@ function FarmLog:Migrate()
 			rep = true,
 			deaths = true,
 			resets = true,
+			misc = false,
 		}
 	end 
 
