@@ -1647,6 +1647,14 @@ function FarmLog:OnSpellCastSuccessEvent(unit, target, spellId)
 	debug("|cff999999OnSpellCastSuccessEvent|r spellId |cffff9900"..tostring(spellId).."|r unit |cffff9900"..tostring(unit))
 	if not FLogGlobalVars.track.consumes or unit ~= "player" then return end 
 	local buffmeta = FarmLog.Consumes[tostring(spellId)]
+
+	if spellId == 27089 then
+		-- The 'Drink' spell can be triggered by 'Purified Draenic Water' and 'Conjured Glacier Water' (and other items).
+		-- GetItemInfo returns nil if that item hasn't been in the player's bag in the current session. If the player had Conjured 
+		-- water in this session, we assume the Drink spell was triggered by that (free) water and thus we return.
+		if GetItemInfo("Conjured Glacier Water") ~= nil then return end
+	end
+
 	-- stuck here
 	--print(spellId)
 	if buffmeta and buffmeta.item then 
