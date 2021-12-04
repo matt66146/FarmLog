@@ -186,6 +186,10 @@ UIDropDownMenu_Initialize(mfpanel.AHMinQualityDropdown, function (frame, level, 
 	end 
 end)
 
+mfpanel.AHMinQuantitySold = CreateCheckButton("FarmLogOptions_AHMinQuantitySold", mfpanel, L["minQuantitySold"])
+mfpanel.AHMinQuantitySold:SetPoint("TOPLEFT", mfpanel.AHMinQualityDropdown, "BOTTOMLEFT", 20, -12)
+mfpanel.AHMinQuantitySold:SetScript("OnClick", function(self) FLogGlobalVars.minQuantitySold = self:GetChecked() end)
+mfpanel.AHMinQuantitySold.tooltipText = L["minQuantitySold-tooltip"]
 
 ----------------------------------------------
 -- Tracking
@@ -193,7 +197,7 @@ end)
 mfpanel.TrackingCategoryTitle = mfpanel:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
 mfpanel.TrackingCategoryTitle:SetFont(font, 16)
 mfpanel.TrackingCategoryTitle:SetText(L["Tracking"])
-mfpanel.TrackingCategoryTitle:SetPoint("TOPLEFT", mfpanel.AHMinQualityDropdown, "BOTTOMLEFT", 20, -20)
+mfpanel.TrackingCategoryTitle:SetPoint("TOPLEFT", mfpanel.AHMinQuantitySold, "BOTTOMLEFT", 0, -20)
 
 mfpanel.TrackKills = CreateCheckButton("FarmLogOptions_TrackKills", mfpanel, L["Mobs Kill Count"])
 mfpanel.TrackKills:SetPoint("TOPLEFT", mfpanel.TrackingCategoryTitle, "BOTTOMLEFT", 0, -8)
@@ -331,6 +335,7 @@ function InterfacePanel:AddonLoaded()
 	InterfacePanel.MainFrame.PauseOnLogin:SetChecked(FLogGlobalVars.pauseOnLogin)
 	InterfacePanel.MainFrame.HonorDRinBGs:SetChecked(FLogGlobalVars.honorDRinBGs)
 	InterfacePanel.MainFrame.AutoResumeBGs:SetChecked(FLogGlobalVars.autoResumeBGs)
+	InterfacePanel.MainFrame.AHMinQuantitySold:SetChecked(FLogGlobalVars.minQuantitySold)
 
 	InterfacePanel.MainFrame.TrackLoot:SetChecked(FLogGlobalVars.track.drops)
 	InterfacePanel.MainFrame.TrackKills:SetChecked(FLogGlobalVars.track.kills)
