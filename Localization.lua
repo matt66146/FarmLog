@@ -130,6 +130,8 @@ function FarmLog_BuildLocalization(context)
     L["options-help-sessions"] = "You can switch between farms with |cff00ff00/fl w DM Lashers|r or |cff00ff00/fl w BRM PvP|r etc., your previous data will be saved. View all farm sessions using the top left button (F) on the main log window."
     L["Prices"] = "Prices"
     L["AH Min Quality"] = "AH Min Quality"
+    L["minQuantitySold"] = "Only use the auction price for items that are likely to be sold"
+    L["minQuantitySold-tooltip"] = "Only has an effect if you have TSM installed. Use the auction price\nonly for items that have a Region Avg Daily Sold value greater\nor equal to 1."
     L["ah-quality-0"] = "No filter (gray+)"
     L["ah-quality-1"] = "Common (white+)"
     L["ah-quality-2"] = "Uncommon (green+)"

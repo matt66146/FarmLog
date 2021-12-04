@@ -175,6 +175,7 @@ FLogGlobalVars = {
 	pauseOnLogin = true,
 	showHonorPercentOnTooltip = true,
 	showHonorFrenzyCounter = true,
+	minQuantitySold = false,
 	blackLotusTimeSeconds = 3600,
 	instances = {},
 	blt = {}, -- BL timers
@@ -2090,12 +2091,14 @@ function FarmLog:GetItemValue(itemLink)
 	local _, _, quality, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(itemLink)
 	local normLink = normalizeLink(itemLink)
 	local ahValue = FarmLog:GetManualPrice(normLink)
+	local soldPerDayTSM = nil
 	if ahValue then
 		return ahValue, VALUE_TYPE_MANUAL
 	elseif not quality or quality >= FLogGlobalVars.ahMinQuality then 
 		-- debug("GetItemValue   "..itemLink.."   quality "..quality)
 		local GetTSMPrice = TSM_API and function(link) 
 			local TSM_ItemString = TSM_API.ToItemString(normLink)
+			soldPerDayTSM = TSM_API.GetCustomPriceValue("DBRegionSoldPerDay", TSM_ItemString)
 			return TSM_API.GetCustomPriceValue("dbmarket", TSM_ItemString)
 		end
 		local PriceCheck = Atr_GetAuctionBuyout or GetTSMPrice or GetAHScanPrice
@@ -2103,7 +2106,10 @@ function FarmLog:GetItemValue(itemLink)
 	end
 
 	-- check if AH price (-15%) > vendor price + 1s
-	if isPositive(ahValue) and (not isPositive(vendorPrice) or ahValue * 0.85 > vendorPrice + 100) then
+	-- also, if the AH price came from TSM, check the 'avg daily sold' value. If it's lower than 1, use the vendor price.
+	if isPositive(ahValue) 
+		and (not isPositive(vendorPrice) or ahValue * 0.85 > vendorPrice + 100) 
+		and (not FLogGlobalVars.minQuantitySold or TSM_API == nil or (isPositive(soldPerDayTSM) and soldPerDayTSM >= 1)) then
 		return ahValue, VALUE_TYPE_SCAN
 	elseif isPositive(vendorPrice) then 
 		return vendorPrice, VALUE_TYPE_VENDOR
