@@ -1,0 +1,26 @@
+Changes since tag v0.4.3
+
+commit 65b3c53d28a71a553b6585bd7dffd897c70ef5c0
+Author: Chaouki Dhib <chaodhib@gmail.com>
+Date:   Sat Dec 4 14:42:56 2021 +0100
+
+    Add an option to only use the auction price for items that are likely to be sold
+
+commit 65b3c53d28a71a553b6585bd7dffd897c70ef5c0
+Author: Chaouki Dhib <chaodhib@gmail.com>
+Date:   Sat Dec 4 14:42:56 2021 +0100
+
+    Add an option to only use the auction price for items that are likely to be sold
+
+commit e79f63b0876a909f043fb4e1aefaf6c704078d7b
+Author: Chaouki Dhib <chaodhib@gmail.com>
+Date:   Sat Nov 27 22:53:52 2021 +0100
+
+    Ignore Drink spells triggered Conjured Glacier Water
+
+commit e79f63b0876a909f043fb4e1aefaf6c704078d7b
+Author: Chaouki Dhib <chaodhib@gmail.com>
+Date:   Sat Nov 27 22:53:52 2021 +0100
+
+    Ignore Drink spells triggered Conjured Glacier Water
+

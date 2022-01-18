@@ -1,4 +1,4 @@
-﻿local VERSION = "1.20"
+local VERSION = "1.20"
 local VERSION_INT = 1.2000
 local ADDON_NAME = "FarmLog"
 local CREDITS = "by |cff40C7EBKof|r @ |cffff2222Shazzrah|r"
@@ -2371,6 +2371,44 @@ function FarmLog:OnAddonLoaded()
 	FarmLog_HUD:DressUp()
 
 	FarmLog:HookTooltip()
+		-- Missing background fix
+	
+		FarmLog_MainWindow:SetBackdrop{
+			bgFile="Interface\\DialogFrame\\UI-DialogBox-Background" ,
+			edgeFile="Interface\\DialogFrame\\UI-DialogBox-Background",
+			tile = true,
+			tileSize = 32,
+			edgeSize = 2,
+		}
+		FarmLog_MainWindow:SetBackdropColor(1,1,1,0.8)
+		
+		FarmLog_HUD:SetBackdrop{
+			bgFile="Interface\\DialogFrame\\UI-DialogBox-Background" ,
+			edgeFile="Interface\\DialogFrame\\UI-DialogBox-Background",
+			tile = true,
+			tileSize = 32,
+			edgeSize = 2,
+		}
+		FarmLog_HUD:SetBackdropColor(1,1,1,0.8)
+	
+		FarmLog_SessionsWindow:SetBackdrop{
+			bgFile="Interface\\DialogFrame\\UI-DialogBox-Background" ,
+			edgeFile="Interface\\DialogFrame\\UI-DialogBox-Background",
+			tile = true,
+			tileSize = 32,
+			edgeSize = 2,
+		}
+		FarmLog_SessionsWindow:SetBackdropColor(1,1,1,0.8)
+		
+		FarmLog_QuestionDialog:SetBackdrop{
+			bgFile="Interface\\DialogFrame\\UI-DialogBox-Background" ,
+			edgeFile="Interface\\DialogFrame\\UI-DialogBox-Background",
+			tile = true,
+			tileSize = 32,
+			edgeSize = 2,
+		}
+		
+	
 end 
 
 -- Entering World
